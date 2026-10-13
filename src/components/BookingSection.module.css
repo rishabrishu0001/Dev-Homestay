@@ -206,3 +206,32 @@
     grid-column: span 1;
   }
 }
+
+@media (max-width: 600px) {
+  .bookingCard {
+    border-radius: var(--radius-lg);
+  }
+  .formCol {
+    padding: 20px 14px;
+  }
+  .sidebarCol {
+    padding: 22px 14px;
+    gap: 20px;
+  }
+  .formGrid {
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .summaryTitle {
+    font-size: 1.35rem;
+    margin-bottom: 14px;
+  }
+  .inputField {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  .whatsappBookingBtn {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+}

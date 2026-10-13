@@ -109,12 +109,6 @@ img {
   padding: 100px 0;
 }
 
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 60px 0;
-  }
-}
-
 /* Section Header Style */
 .section-header {
   text-align: center;
@@ -153,11 +147,40 @@ img {
 }
 
 @media (max-width: 768px) {
+  .section-padding {
+    padding: 60px 0;
+  }
   .section-title {
     font-size: 2rem;
   }
   .section-desc {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+  }
+  .section-padding {
+    padding: 44px 0;
+  }
+  .section-header {
+    margin-bottom: 34px;
+  }
+  .section-title {
+    font-size: 1.7rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .section-desc {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .section-tag {
+    font-size: 0.74rem;
+    padding: 4px 12px;
+    margin-bottom: 12px;
   }
 }
 

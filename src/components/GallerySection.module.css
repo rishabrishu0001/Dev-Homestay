@@ -192,3 +192,40 @@
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.8);
 }
+
+@media (max-width: 600px) {
+  .filterTabs {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .filterBtn {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .galleryItem {
+    height: 160px;
+    border-radius: var(--radius-sm);
+  }
+  .itemBadge {
+    top: 8px;
+    left: 8px;
+    font-size: 0.64rem;
+    padding: 3px 8px;
+  }
+  .itemOverlay {
+    padding: 12px;
+  }
+  .overlayTitle {
+    font-size: 0.95rem;
+  }
+  .overlayCaption {
+    display: none;
+  }
+  .lightboxImageWrapper {
+    height: 45vh;
+  }
+}

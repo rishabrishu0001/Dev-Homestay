@@ -87,10 +87,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
                 if (bookSec) bookSec.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className="btn btn-primary"
-            style={{ padding: "10px 20px", fontSize: "0.88rem" }}
+            className={`btn btn-primary ${styles.navBookBtn}`}
           >
-            <CalendarCheck size={16} />
+            <CalendarCheck size={15} />
             <span>Book Stay</span>
           </button>
 

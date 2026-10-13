@@ -168,7 +168,38 @@
 }
 
 @media (max-width: 600px) {
+  .imageMosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: 220px;
+    gap: 12px;
+  }
+  .subImgBox1, .subImgBox2 {
+    display: none;
+  }
+  .experienceBadge {
+    bottom: -12px;
+    left: 12px;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+  }
+  .expYears {
+    font-size: 1.55rem;
+  }
+  .expText {
+    font-size: 0.68rem;
+  }
   .featuresGrid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .storyLead {
+    font-size: 1.05rem;
+  }
+  .storyText {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .featureCard {
+    padding: 12px;
   }
 }

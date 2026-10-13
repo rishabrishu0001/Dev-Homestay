@@ -200,15 +200,21 @@
 }
 
 @media (max-width: 960px) {
+  .heroSection {
+    padding-top: 86px;
+    padding-bottom: 48px;
+    min-height: auto;
+  }
   .heroTitle {
     font-size: 2.5rem;
   }
   .heroSubtitle {
     font-size: 1rem;
-    margin-bottom: 30px;
+    margin-bottom: 26px;
   }
   .searchForm {
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
   .submitBtn {
     grid-column: span 2;
@@ -217,13 +223,83 @@
 }
 
 @media (max-width: 600px) {
+  .heroSection {
+    padding-top: 76px;
+    padding-bottom: 36px;
+  }
+  .heroContent {
+    padding: 0 12px;
+  }
+  .ratingBadge {
+    font-size: 0.74rem;
+    padding: 6px 12px;
+    gap: 6px;
+    margin-bottom: 16px;
+    max-width: 100%;
+    line-height: 1.35;
+    white-space: normal;
+  }
   .heroTitle {
-    font-size: 2.1rem;
+    font-size: 1.85rem;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .heroSubtitle {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    padding: 0 2px;
+  }
+  .searchBarWrapper {
+    padding: 14px 12px;
+    border-radius: var(--radius-lg);
   }
   .searchForm {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 8px;
+  }
+  .fieldGroup {
+    gap: 4px;
+  }
+  .fieldLabel {
+    font-size: 0.68rem;
+    gap: 4px;
+  }
+  .fieldInput {
+    padding: 8px 8px;
+    font-size: 0.82rem;
   }
   .submitBtn {
-    grid-column: span 1;
+    grid-column: span 2;
+    height: 44px;
+    font-size: 0.92rem;
+    padding: 10px 14px;
+    margin-top: 2px;
+  }
+  .quickPills {
+    margin-top: 18px;
+    gap: 6px;
+  }
+  .quickPill {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .heroTitle {
+    font-size: 1.62rem;
+  }
+  .ratingBadge {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+  .fieldLabel span {
+    font-size: 0.65rem;
+  }
+  .fieldInput {
+    padding: 7px 6px;
+    font-size: 0.78rem;
   }
 }

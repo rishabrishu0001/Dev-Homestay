@@ -1,7 +1,32 @@
 .roomsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 32px;
+}
+
+@media (max-width: 600px) {
+  .roomsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cardBody {
+    padding: 18px 16px;
+  }
+  .cardImageWrapper {
+    height: 210px;
+  }
+  .roomTitle {
+    font-size: 1.25rem;
+  }
+  .cardActions {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .cardActions button,
+  .cardActions a {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
 }
 
 .roomCard {
@@ -148,8 +173,4 @@
   margin-top: auto;
 }
 
-@media (max-width: 600px) {
-  .roomsGrid {
-    grid-template-columns: 1fr;
-  }
-}
+

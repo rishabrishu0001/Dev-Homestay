@@ -174,7 +174,44 @@
   color: var(--accent);
 }
 
+.navBookBtn {
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
 @media (max-width: 960px) {
+  .header {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 10px 0;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(229, 221, 208, 0.7);
+  }
+  .navContainer {
+    padding: 0 16px;
+  }
+  .brandName {
+    font-size: 1.18rem;
+  }
+  .brandSub {
+    font-size: 0.64rem;
+    letter-spacing: 1px;
+  }
+  .logoBadge {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+  .navActions {
+    gap: 10px;
+  }
+  .navBookBtn {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    gap: 5px;
+  }
   .navLinks {
     display: none;
   }
@@ -182,6 +219,24 @@
     display: none;
   }
   .mobileMenuBtn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+  .mobileDrawer {
+    top: 58px;
+  }
+}
+
+@media (max-width: 400px) {
+  .brandName {
+    font-size: 1.05rem;
+  }
+  .brandSub {
+    display: none;
+  }
+  .navBookBtn span {
+    display: inline;
   }
 }
