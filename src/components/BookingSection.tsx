@@ -121,7 +121,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
         </div>
 
         {/* Booking Card */}
-        <div className={styles.bookingCard}>
+        <div className={`${styles.bookingCard} reveal-slide-up`}>
           {/* Form Col */}
           <div className={styles.formCol}>
             <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.6rem", color: "var(--primary)" }}>

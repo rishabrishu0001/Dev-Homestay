@@ -258,3 +258,76 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: #9fb2a5;
 }
+
+/* =========================================================
+   SCROLL REVEAL ANIMATIONS (Cards slide in from outside)
+   ========================================================= */
+
+.reveal-card,
+.reveal-slide-left,
+.reveal-slide-right,
+.reveal-slide-up {
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Slide in from left */
+.reveal-slide-left {
+  transform: translateX(-70px);
+}
+
+/* Slide in from right */
+.reveal-slide-right {
+  transform: translateX(70px);
+}
+
+/* Slide in from bottom */
+.reveal-slide-up {
+  transform: translateY(60px);
+}
+
+/* Generic card: alternating outside slide (odd left, even right) */
+.reveal-card:nth-child(odd) {
+  transform: translateX(-65px);
+}
+
+.reveal-card:nth-child(even) {
+  transform: translateX(65px);
+}
+
+/* Stagger delay for multiple cards in grid */
+.reveal-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.reveal-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.reveal-card:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.reveal-card:nth-child(5) {
+  transition-delay: 0.15s;
+}
+.reveal-card:nth-child(6) {
+  transition-delay: 0.25s;
+}
+
+/* When scrolled into view: smooth snap to final position */
+.revealed {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .reveal-card:nth-child(odd),
+  .reveal-slide-left {
+    transform: translateX(-40px);
+  }
+  .reveal-card:nth-child(even),
+  .reveal-slide-right {
+    transform: translateX(40px);
+  }
+}

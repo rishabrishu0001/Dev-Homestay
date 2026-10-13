@@ -38,7 +38,7 @@ export const LocationSection: React.FC = () => {
         {/* Location Grid */}
         <div className={styles.locationGrid}>
           {/* How to reach */}
-          <div className={styles.howToReachCard}>
+          <div className={`${styles.howToReachCard} reveal-slide-left`}>
             <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.4rem", color: "var(--primary)" }}>
               How to Reach Us
             </h3>
@@ -57,7 +57,7 @@ export const LocationSection: React.FC = () => {
           </div>
 
           {/* Nearby Attractions */}
-          <div className={styles.attractionsCard}>
+          <div className={`${styles.attractionsCard} reveal-slide-right`}>
             <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.4rem", color: "var(--primary)" }}>
               Nearby Exploration
             </h3>
@@ -75,7 +75,7 @@ export const LocationSection: React.FC = () => {
         </div>
 
         {/* Map Preview Banner */}
-        <div className={styles.mapBanner}>
+        <div className={`${styles.mapBanner} reveal-slide-up`}>
           <Image
             src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80"
             alt="Valley and River Panorama"

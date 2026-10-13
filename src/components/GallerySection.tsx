@@ -61,7 +61,7 @@ export const GallerySection: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className={`${styles.galleryItem} ${isWide ? styles.galleryItemWide : ""}`}
+                className={`${styles.galleryItem} ${isWide ? styles.galleryItemWide : ""} reveal-card`}
                 onClick={() => setActiveLightboxItem(item)}
               >
                 {item.badge && (

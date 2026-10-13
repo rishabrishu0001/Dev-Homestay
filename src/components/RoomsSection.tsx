@@ -41,7 +41,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
         {/* Rooms Grid */}
         <div className={styles.roomsGrid}>
           {displayedRooms.map((room) => (
-            <div key={room.id} className={styles.roomCard}>
+            <div key={room.id} className={`${styles.roomCard} reveal-card`}>
               {/* Card Image */}
               <div className={styles.cardImageWrapper}>
                 <Image

@@ -78,7 +78,7 @@ export const AmenitiesSection: React.FC = () => {
         {activeTab === "facilities" && (
           <div className={styles.amenitiesGrid}>
             {AMENITIES.map((amenity) => (
-              <div key={amenity.id} className={styles.amenityCard}>
+              <div key={amenity.id} className={`${styles.amenityCard} reveal-card`}>
                 {amenity.highlight && (
                   <span className={styles.highlightBadge}>{amenity.highlight}</span>
                 )}
@@ -96,7 +96,7 @@ export const AmenitiesSection: React.FC = () => {
         {activeTab === "experiences" && (
           <div className={styles.amenitiesGrid}>
             {EXPERIENCES.map((exp) => (
-              <div key={exp.id} className={styles.amenityCard}>
+              <div key={exp.id} className={`${styles.amenityCard} reveal-card`}>
                 <div className={styles.iconBox}>
                   {iconMap[exp.icon] || <Sparkles size={26} />}
                 </div>
@@ -108,7 +108,7 @@ export const AmenitiesSection: React.FC = () => {
         )}
 
         {/* Tour & Travel Desk Banner */}
-        <div className={styles.bannerCard}>
+        <div className={`${styles.bannerCard} reveal-slide-up`}>
           <div className={styles.bannerText}>
             <span style={{ color: "#f3c27e", textTransform: "uppercase", fontSize: "0.78rem", fontWeight: 700, letterSpacing: "1px" }}>
               Under One Roof

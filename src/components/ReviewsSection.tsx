@@ -25,7 +25,7 @@ export const ReviewsSection: React.FC = () => {
         {/* Reviews Grid */}
         <div className={styles.reviewsGrid}>
           {REVIEWS.map((rev) => (
-            <div key={rev.id} className={styles.reviewCard}>
+            <div key={rev.id} className={`${styles.reviewCard} reveal-card`}>
               <div>
                 <div className={styles.ratingRow}>
                   <div className={styles.stars}>
@@ -65,7 +65,7 @@ export const ReviewsSection: React.FC = () => {
         </div>
 
         {/* Trust Badges Bar */}
-        <div className={styles.trustBanner}>
+        <div className={`${styles.trustBanner} reveal-slide-up`}>
           <div className={styles.trustItem}>
             <h4>4.8 ★</h4>
             <p>TripAdvisor (118 Reviews)</p>

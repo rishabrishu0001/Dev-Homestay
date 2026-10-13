@@ -12,7 +12,7 @@ export const AboutSection: React.FC = () => {
       <div className="container">
         <div className={styles.aboutGrid}>
           {/* Image Mosaic */}
-          <div className={styles.imageMosaic}>
+          <div className={`${styles.imageMosaic} reveal-slide-left`}>
             <div className={styles.mainImgBox}>
               <Image
                 src="/images/views/homestay-snow-covered-winter.jpg"
@@ -48,7 +48,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* Content Column */}
-          <div className={styles.contentCol}>
+          <div className={`${styles.contentCol} reveal-slide-right`}>
             <div>
               <span className="section-tag">
                 <Sparkles size={14} />

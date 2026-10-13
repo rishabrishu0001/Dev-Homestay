@@ -31,7 +31,7 @@ export const BlogSection: React.FC = () => {
         {/* Featured Post */}
         <Link href={`/blog/${featured.slug}`} className={styles.featuredLink}>
           <article
-            className={styles.featuredCard}
+            className={`${styles.featuredCard} reveal-slide-up`}
             onMouseEnter={() => setHoveredId(featured.slug)}
             onMouseLeave={() => setHoveredId(null)}
           >
@@ -81,7 +81,7 @@ export const BlogSection: React.FC = () => {
           {rest.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.postLink}>
               <article
-                className={styles.postCard}
+                className={`${styles.postCard} reveal-card`}
                 onMouseEnter={() => setHoveredId(post.slug)}
                 onMouseLeave={() => setHoveredId(null)}
               >

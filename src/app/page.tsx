@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { AboutSection } from "@/components/AboutSection";
@@ -20,6 +20,46 @@ export default function Home() {
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [guestCount, setGuestCount] = useState<string>("2");
+
+  useEffect(() => {
+    // Scroll reveal observer for sliding cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.1,
+      }
+    );
+
+    const observeAll = () => {
+      const elements = document.querySelectorAll(
+        ".reveal-card:not(.revealed), .reveal-slide-left:not(.revealed), .reveal-slide-right:not(.revealed), .reveal-slide-up:not(.revealed)"
+      );
+      elements.forEach((el) => observer.observe(el));
+    };
+
+    observeAll();
+
+    // Auto-observe newly mounted cards (e.g. on filter change)
+    const mutationObserver = new MutationObserver(() => {
+      observeAll();
+    });
+
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, []);
 
   const handleHeroSearch = (params: {
     checkIn: string;
