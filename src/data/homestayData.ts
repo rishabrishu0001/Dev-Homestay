@@ -564,60 +564,11 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     badge: "Guest Room"
   },
   {
-    id: "g1",
-    title: "Morning Sun on Snow Peaks",
-    category: "outdoors",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-    caption: "Golden hour glow viewed directly from the Dev Homestay upper deck."
-  },
-  {
-    id: "g2",
-    title: "Cedar View Deluxe Room",
-    category: "rooms",
-    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
-    caption: "Warm timber walls, plush king bedding, and mountain-facing French doors."
-  },
-  {
     id: "g3",
     title: "Traditional Home-Cooked Feast",
     category: "dining",
     image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1200&q=80",
     caption: "Steaming hot authentic local thali served hot from our family kitchen."
-  },
-  {
-    id: "g4",
-    title: "Pine Wood Attic Bedroom",
-    category: "rooms",
-    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80",
-    caption: "Cozy sloping ceiling with a glass skylight for midnight stargazing."
-  },
-  {
-    id: "g5",
-    title: "Twilight Bonfire Gatherings",
-    category: "vibe",
-    image: "https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=1200&q=80",
-    caption: "Guests sharing stories, acoustic guitar melodies, and hot chocolate."
-  },
-  {
-    id: "g6",
-    title: "Lush Lawn & Apple Orchard",
-    category: "outdoors",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-    caption: "Sprawling greenery where guests practice yoga and sip early morning chai."
-  },
-  {
-    id: "g7",
-    title: "Freshly Brewed Ginger Herb Tea",
-    category: "dining",
-    image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&q=80",
-    caption: "Fresh mint, ginger, and wild mountain herbs boiled to fragrant perfection."
-  },
-  {
-    id: "g8",
-    title: "Valley View Room Terrace",
-    category: "rooms",
-    image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80",
-    caption: "Sunlight streaming through the valley view room terrace and pine canopies."
   }
 ];
 
