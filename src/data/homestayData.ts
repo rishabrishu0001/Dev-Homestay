@@ -83,12 +83,12 @@ export const ROOMS: Room[] = [
     name: "Cedar View Deluxe Room",
     tagline: "Unobstructed Himalayan valley views with deodar forest balcony",
     category: "deluxe",
-    pricePerNight: 3499,
-    originalPrice: 4499,
+    pricePerNight: 2499,
+    originalPrice: 3299,
     capacity: "2 Guests",
-    bedType: "1 King Plush Bed",
+    bedType: "1 King Bed with 8-inch Mattress",
     view: "Panoramic Pine Valley & Himalayan Ridges",
-    size: "350 sq.ft",
+    size: "200 sq.ft",
     badge: "Most Popular",
     image: "/images/rooms/hotel-panoramic-veranda-view.jpg",
     gallery: [
@@ -102,24 +102,24 @@ export const ROOMS: Room[] = [
     ],
     features: [
       "Valley View Balcony",
-      "Complimentary Pure Vegetarian Breakfast",
+      "Comfortable 8-Inch Mattress",
       "Electric Room Heater & Thermal Bedding",
       "Ensuite Bath with 24/7 Geyser Hot Water",
       "High-Speed Fiber Wi-Fi",
       "Herbal Tea & Coffee Maker",
       "Daily Housekeeping & Fresh Linens"
     ],
-    description: "Perched on the upper floor, our Cedar View Deluxe Room boasts expansive glass windows and an attached balcony framing uninterrupted vistas of mist-clad Himalayan pine forests and tranquil valley slopes."
+    description: "Perched on the upper floor, our 200 sq.ft Cedar View Deluxe Room boasts comfortable bedding with an 8-inch mattress, expansive glass windows, and an attached balcony framing uninterrupted vistas of mist-clad Himalayan pine forests."
   },
   {
     id: "cozy-family-suite",
     name: "Cozy Family Suite",
-    tagline: "Spacious family sanctuary with warm timber flooring and mountain views",
+    tagline: "Spacious 2-room family sanctuary with private kitchen, gas stove, and mountain views",
     category: "attic",
     pricePerNight: 4199,
     originalPrice: 5299,
-    capacity: "2 - 4 Guests",
-    bedType: "1 Queen Bed + Cozy Daybed",
+    capacity: "4 - 6 Guests",
+    bedType: "2 Rooms with 2 Queen Beds",
     view: "Deodar Canopies & Mountain Ridges",
     size: "420 sq.ft",
     badge: "Family Favorite",
@@ -134,27 +134,27 @@ export const ROOMS: Room[] = [
       "/images/views/balcony-snowman-bear.jpg"
     ],
     features: [
+      "2 Separate Rooms with 2 Queen Beds",
+      "Private Kitchen with Gas Stove & Utensils",
+      "Accommodates 4 to 6 Guests",
       "Attached Balcony Facing Pine Woods",
       "Warm Natural Hardwood Flooring",
-      "Spacious Family Layout (Up to 4 Guests)",
       "Electric Heating Blanket & Room Heater",
-      "Dedicated Work & Coffee Lounge",
-      "High-Speed Wi-Fi & Power Backup",
-      "Complimentary Pure Vegetarian Breakfast"
+      "High-Speed Wi-Fi & 24/7 Hot Water"
     ],
-    description: "A warm and inviting suite lined with timber craft, ideal for families and couples seeking peaceful mountain comfort. Large sunlit windows and attached balcony overlook pristine Shimla deodar woods."
+    description: "A spacious 2-room family suite ideal for 4 to 6 guests, featuring 2 queen beds and a private kitchen equipped with gas stove for home cooking. Large sunlit windows and attached balcony overlook pristine Shimla deodar woods."
   },
   {
     id: "valley-view-room",
     name: "Valley View Room",
     tagline: "Panoramic Himalayan valley views with balcony & fresh mountain breeze",
     category: "cottage",
-    pricePerNight: 5899,
-    originalPrice: 7499,
-    capacity: "2 - 4 Guests",
-    bedType: "King Plush Bed + Daybed",
+    pricePerNight: 2799,
+    originalPrice: 3599,
+    capacity: "2 - 3 Guests",
+    bedType: "1 Queen Bed + 1 Sofa-cum-Bed",
     view: "Expansive Pine Valley & Mountain Ridges",
-    size: "450 sq.ft",
+    size: "220 sq.ft",
     badge: "Valley View",
     image: "/images/rooms/bedroom-suite-tv-dressing.jpg",
     gallery: [
@@ -169,14 +169,15 @@ export const ROOMS: Room[] = [
     ],
     features: [
       "Panoramic Valley View Balcony",
+      "1 Queen Bed + 1 Sofa-cum-Bed",
+      "220 sq.ft Cozy Mountain Living",
       "Attached Clean Bathroom with 24/7 Hot Water",
       "High-Speed Fiber Wi-Fi",
       "Tea/Coffee Amenities & Electric Kettle",
       "Electric Room Heater & Thermal Bedding",
-      "Complimentary Pure Vegetarian Breakfast",
       "Dedicated Dressing Area & Wardrobe"
     ],
-    description: "Wake up to sweeping views of the lush Dudhli-Bharari pine valley and morning mist. Features an attached sitout balcony to soak in fresh mountain air, quiet cedar acoustics, and stunning sunsets."
+    description: "A cozy 220 sq.ft mountain room with 1 queen bed and 1 sofa-cum-bed, opening up to sweeping views of the lush Dudhli-Bharari pine valley and morning mist. Features an attached sitout balcony to soak in fresh mountain air, quiet cedar acoustics, and stunning sunsets."
   }
 ];
 

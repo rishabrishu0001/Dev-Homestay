@@ -108,7 +108,8 @@ export const Hero: React.FC<HeroProps> = ({ onSearch }) => {
                 <option value="2">2 Guests</option>
                 <option value="3">3 Guests</option>
                 <option value="4">4 Guests</option>
-                <option value="5">5+ Guests (Family Suite)</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests (Family Suite)</option>
               </select>
             </div>
 

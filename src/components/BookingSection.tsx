@@ -116,7 +116,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
           </span>
           <h2 className="section-title">Reserve Your Mountain Getaway</h2>
           <p className="section-desc">
-            Book directly with host Dev for guaranteed best prices, complimentary pure vegetarian breakfast, and personalized stay &amp; travel coordination.
+            Book directly with host Dev for guaranteed best prices, authentic pure vegetarian home-cooked food, and personalized stay &amp; travel coordination.
           </p>
         </div>
 
@@ -236,7 +236,9 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
                   <option value="2">2 Adults</option>
                   <option value="3">3 Adults</option>
                   <option value="4">4 Adults</option>
-                  <option value="5+">5+ Guests (Family / Group)</option>
+                  <option value="5">5 Adults</option>
+                  <option value="6">6 Adults (Family Suite)</option>
+                  <option value="6+">6+ Guests (Family / Group)</option>
                 </select>
               </div>
 

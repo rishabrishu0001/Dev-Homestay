@@ -101,9 +101,9 @@ export const RoomModal: React.FC<RoomModalProps> = ({ room, onClose, onSelectFor
             <p className={styles.roomDesc}>{room.description}</p>
           </div>
 
-          {/* Included Features */}
+          {/* Amenities & Services */}
           <div>
-            <h3 className={styles.sectionHeading}>Included Amenities & Services</h3>
+            <h3 className={styles.sectionHeading}>Amenities & Services</h3>
             <ul className={styles.featuresList}>
               {room.features.map((feature, idx) => (
                 <li key={idx} className={styles.featureItem}>
