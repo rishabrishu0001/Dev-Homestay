@@ -5,20 +5,15 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import {
   Compass,
-  MapPin,
-  Clock,
   Check,
   ShieldCheck,
   Phone,
   MessageCircle,
   ArrowRight,
-  Sparkles,
-  CalendarCheck,
-  Car,
   Home,
 } from "lucide-react";
-import { TOURS_DATA, TourPackage } from "@/data/toursData";
-import { HOMESTAY_INFO, ROOMS } from "@/data/homestayData";
+import { TOURS_DATA } from "@/data/toursData";
+import { HOMESTAY_INFO } from "@/data/homestayData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";

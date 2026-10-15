@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import {
   MapPin,
   Phone,
@@ -16,8 +14,6 @@ import {
   Bus,
   Check,
   Send,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import { HOMESTAY_INFO, HOW_TO_REACH } from "@/data/homestayData";
 import { Navbar } from "@/components/Navbar";

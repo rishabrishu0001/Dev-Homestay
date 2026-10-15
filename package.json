@@ -18,6 +18,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/typescript-estree": "^8.71.2",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "lighthouse": "^12.8.2",

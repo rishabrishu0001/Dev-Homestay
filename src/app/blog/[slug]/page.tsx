@@ -8,7 +8,6 @@ import {
   Clock,
   Tag,
   User,
-  HelpCircle,
   BookOpen,
   ChevronRight,
 } from "lucide-react";

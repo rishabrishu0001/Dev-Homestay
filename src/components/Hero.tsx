@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Star, Calendar, Users, Home, Search, Flame, Wifi, Sparkles, MapPin, Clock, ShieldCheck } from "lucide-react";
-import { HOMESTAY_INFO, ROOMS, REVIEW_METRICS } from "@/data/homestayData";
+import { Star, Calendar, Users, Home, Search, Flame, Wifi, Sparkles, MapPin } from "lucide-react";
+import { ROOMS, REVIEW_METRICS } from "@/data/homestayData";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./Hero.module.css";
 

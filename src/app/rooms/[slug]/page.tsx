@@ -8,20 +8,15 @@ import {
   Bed,
   Mountain,
   Check,
-  CalendarCheck,
   Phone,
   MessageCircle,
-  Wifi,
   Sparkles,
   ShieldCheck,
-  Flame,
   ArrowRight,
   Compass,
-  UtensilsCrossed,
-  MapPin,
   Clock,
 } from "lucide-react";
-import { ROOMS, HOMESTAY_INFO, Room } from "@/data/homestayData";
+import { ROOMS, HOMESTAY_INFO } from "@/data/homestayData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";

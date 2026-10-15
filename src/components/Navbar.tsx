@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Trees, Phone, Menu, X, CalendarCheck } from "lucide-react";
 import { HOMESTAY_INFO } from "@/data/homestayData";
 import { trackEvent } from "@/lib/analytics";
@@ -12,6 +13,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -91,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
                 if (bookSec) {
                   bookSec.scrollIntoView({ behavior: "smooth" });
                 } else {
-                  window.location.href = "/#booking";
+                  router.push("/#booking");
                 }
               }
             }}

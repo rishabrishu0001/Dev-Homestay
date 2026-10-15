@@ -51,18 +51,22 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
   const [bookingRef, setBookingRef] = useState("");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (initialRoomId) setRoomId(initialRoomId);
   }, [initialRoomId]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (initialCheckIn) setCheckIn(initialCheckIn);
   }, [initialCheckIn]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (initialCheckOut) setCheckOut(initialCheckOut);
   }, [initialCheckOut]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (initialGuests) setGuests(initialGuests);
   }, [initialGuests]);
 

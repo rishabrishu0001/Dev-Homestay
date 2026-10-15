@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { HeartHandshake, Mountain, Utensils, ShieldCheck, Sparkles } from "lucide-react";
-import { HOMESTAY_INFO } from "@/data/homestayData";
 import styles from "./AboutSection.module.css";
 
 export const AboutSection: React.FC = () => {

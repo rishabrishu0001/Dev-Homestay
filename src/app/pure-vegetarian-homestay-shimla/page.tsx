@@ -4,24 +4,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   UtensilsCrossed,
-  Check,
-  Sparkles,
   ShieldCheck,
-  Heart,
   Phone,
   MessageCircle,
-  ArrowRight,
-  Clock,
-  MapPin,
-  CalendarCheck,
 } from "lucide-react";
-import { HOMESTAY_INFO, ROOMS } from "@/data/homestayData";
+import { HOMESTAY_INFO } from "@/data/homestayData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { StructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Pure Vegetarian Homestay in Shimla | Home-Cooked Food | Dev Homestay",

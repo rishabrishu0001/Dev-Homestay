@@ -15,7 +15,6 @@ import { BlogSection } from "@/components/BlogSection";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
 import { StructuredData } from "@/components/StructuredData";
-import { HOMESTAY_INFO } from "@/data/homestayData";
 
 const HOMEPAGE_FAQS = [
   {

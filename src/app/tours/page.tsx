@@ -4,14 +4,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   Compass,
-  MapPin,
-  Clock,
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
   Phone,
   MessageCircle,
-  Car,
 } from "lucide-react";
 import { TOURS_DATA } from "@/data/toursData";
 import { HOMESTAY_INFO } from "@/data/homestayData";

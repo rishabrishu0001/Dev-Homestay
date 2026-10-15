@@ -4,18 +4,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   Heart,
-  Trees,
-  Sparkles,
   ShieldCheck,
   Phone,
   MessageCircle,
-  ArrowRight,
-  Compass,
-  MapPin,
-  Clock,
-  Wifi,
 } from "lucide-react";
-import { HOMESTAY_INFO, ROOMS } from "@/data/homestayData";
+import { HOMESTAY_INFO } from "@/data/homestayData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
