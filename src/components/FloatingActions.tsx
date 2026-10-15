@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { MessageCircle, Phone } from "lucide-react";
 import { HOMESTAY_INFO } from "@/data/homestayData";

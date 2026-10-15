@@ -52,8 +52,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       ],
       type: "article",
-      publishedTime: post.publishDateIso,
-      modifiedTime: post.dateModifiedIso,
+      publishedTime: post.publishDate,
+      modifiedTime: post.dateModified,
     },
     twitter: {
       card: "summary_large_image",
@@ -77,8 +77,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     headline: post.title,
     description: post.metaDescription,
     image: [`https://www.devhomestay.in${post.coverImage}`],
-    datePublished: post.publishDateIso,
-    dateModified: post.dateModifiedIso,
+    datePublished: post.publishDate,
+    dateModified: post.dateModified,
     author: {
       "@type": "Person",
       name: post.author,
@@ -316,10 +316,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div style={{ marginTop: "48px" }}>
               <FAQAccordion
                 title="Frequently Asked Questions"
-                items={post.faqs.map((f) => ({
-                  question: f.q,
-                  answer: f.a,
-                }))}
+                items={post.faqs}
               />
             </div>
 
