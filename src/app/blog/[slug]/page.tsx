@@ -16,6 +16,9 @@ import { BLOG_POSTS } from "@/data/blogData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { StructuredData } from "@/components/StructuredData";
+import { FAQAccordion } from "@/components/FAQAccordion";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,22 +35,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.metaTitle,
     description: post.metaDescription,
-    keywords: post.tags,
+    alternates: {
+      canonical: `https://www.devhomestay.in/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
-      url: `https://devhomestay.com/blog/${post.slug}`,
+      url: `https://www.devhomestay.in/blog/${post.slug}`,
       siteName: "Dev Homestay",
       images: [
         {
-          url: `https://devhomestay.com${post.coverImage}`,
+          url: `https://www.devhomestay.in${post.coverImage}`,
           width: 1200,
           height: 630,
           alt: post.coverAlt,
         },
       ],
       type: "article",
-      publishedTime: post.publishDate,
+      publishedTime: post.publishDateIso,
+      modifiedTime: post.dateModifiedIso,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.metaTitle,
+      description: post.metaDescription,
+      images: [`https://www.devhomestay.in${post.coverImage}`],
     },
   };
 }
@@ -59,8 +71,37 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const related = BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3);
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.metaDescription,
+    image: [`https://www.devhomestay.in${post.coverImage}`],
+    datePublished: post.publishDateIso,
+    dateModified: post.dateModifiedIso,
+    author: {
+      "@type": "Person",
+      name: post.author,
+      jobTitle: post.authorRole,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Dev Homestay",
+      url: "https://www.devhomestay.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.devhomestay.in/images/branding/apple-touch-icon.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.devhomestay.in/blog/${post.slug}`,
+    },
+  };
+
   return (
     <>
+      <StructuredData data={blogSchema} />
       <Navbar />
 
       <main style={{ paddingTop: "80px" }}>
@@ -101,24 +142,13 @@ export default async function BlogPostPage({ params }: PageProps) {
             }}
           >
             {/* Breadcrumb */}
-            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "16px" }}>
-              <Link
-                href="/"
-                style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "4px" }}
-              >
-                Home
-              </Link>
-              <ChevronRight size={12} color="rgba(255,255,255,0.5)" />
-              <Link
-                href="/blog"
-                style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.8rem" }}
-              >
-                Blog
-              </Link>
-              <ChevronRight size={12} color="rgba(255,255,255,0.5)" />
-              <span style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.8rem" }}>
-                {post.category}
-              </span>
+            <div style={{ marginBottom: "16px" }}>
+              <Breadcrumbs
+                items={[
+                  { label: "Blog", href: "/blog" },
+                  { label: post.title },
+                ]}
+              />
             </div>
 
             <span
@@ -282,67 +312,133 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             ))}
 
-            {/* FAQ Section — AEO Optimised */}
+            {/* FAQ Section */}
+            <div style={{ marginTop: "48px" }}>
+              <FAQAccordion
+                title="Frequently Asked Questions"
+                items={post.faqs.map((f) => ({
+                  question: f.q,
+                  answer: f.a,
+                }))}
+              />
+            </div>
+
+            {/* Internal Links Recommendation Box */}
             <div
               style={{
-                marginTop: "60px",
-                background: "var(--bg-surface)",
+                marginTop: "48px",
+                padding: "28px",
+                background: "var(--bg-card)",
                 borderRadius: "var(--radius-lg)",
                 border: "1px solid var(--border-color)",
-                padding: "40px",
               }}
             >
+              <h3
+                className="font-serif"
+                style={{ fontSize: "1.2rem", color: "var(--primary)", marginBottom: "14px" }}
+              >
+                Plan Your Stay & Sightseeing in Shimla
+              </h3>
+              <p style={{ fontSize: "0.92rem", color: "var(--text-muted)", marginBottom: "16px", lineHeight: 1.6 }}>
+                Planning a trip to Shimla? Explore our handpicked rooms, dining, and local tour packages with transparent pricing:
+              </p>
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  marginBottom: "28px",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                  gap: "12px",
                 }}
               >
-                <HelpCircle size={20} color="var(--primary)" />
-                <h2
-                  className="font-serif"
-                  style={{ fontSize: "1.35rem", color: "var(--primary)", fontWeight: 600 }}
+                <Link
+                  href="/rooms/cedar-view-deluxe-room"
+                  style={{
+                    padding: "10px 14px",
+                    background: "var(--bg-surface)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--border-color)",
+                    fontSize: "0.86rem",
+                    color: "var(--primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
                 >
-                  Frequently Asked Questions
-                </h2>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-                {post.faqs.map((faq, i) => (
-                  <div key={i}>
-                    <h3
-                      style={{
-                        fontSize: "1.02rem",
-                        fontWeight: 700,
-                        color: "var(--primary)",
-                        marginBottom: "8px",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {faq.q}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: "0.97rem",
-                        lineHeight: 1.72,
-                        color: "var(--text-muted)",
-                      }}
-                    >
-                      {faq.a}
-                    </p>
-                    {i < post.faqs.length - 1 && (
-                      <div
-                        style={{
-                          height: "1px",
-                          background: "var(--border-color)",
-                          marginTop: "28px",
-                        }}
-                      />
-                    )}
-                  </div>
-                ))}
+                  → Cedar View Deluxe Room (from ₹2,499)
+                </Link>
+                <Link
+                  href="/rooms/valley-view-room"
+                  style={{
+                    padding: "10px 14px",
+                    background: "var(--bg-surface)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--border-color)",
+                    fontSize: "0.86rem",
+                    color: "var(--primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  → Valley View Room with Balcony (from ₹2,799)
+                </Link>
+                <Link
+                  href="/rooms/family-suite"
+                  style={{
+                    padding: "10px 14px",
+                    background: "var(--bg-surface)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--border-color)",
+                    fontSize: "0.86rem",
+                    color: "var(--primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  → Family Suite with Private Kitchen (from ₹4,199)
+                </Link>
+                <Link
+                  href="/pure-vegetarian-homestay-shimla"
+                  style={{
+                    padding: "10px 14px",
+                    background: "var(--bg-surface)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--border-color)",
+                    fontSize: "0.86rem",
+                    color: "var(--primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  → Pure Vegetarian Home Dining
+                </Link>
+                <Link
+                  href="/homestay-near-mall-road-shimla"
+                  style={{
+                    padding: "10px 14px",
+                    background: "var(--bg-surface)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--border-color)",
+                    fontSize: "0.86rem",
+                    color: "var(--primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  → Homestay 4 km from Mall Road
+                </Link>
+                <Link
+                  href="/tours"
+                  style={{
+                    padding: "10px 14px",
+                    background: "var(--bg-surface)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--border-color)",
+                    fontSize: "0.86rem",
+                    color: "var(--primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  → Shimla, Kufri, Spiti & Kinnaur Tours
+                </Link>
               </div>
             </div>
 
@@ -386,7 +482,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 Ready to Experience Dev Homestay?
               </h2>
               <p style={{ fontSize: "1rem", lineHeight: 1.7, opacity: 0.85, marginBottom: "28px", maxWidth: "480px", margin: "0 auto 28px" }}>
-                Panoramic Himalayan views, pure vegetarian home-cooked food, and 30+ years of hospitality. From Rs 3,499/night.
+                Panoramic Himalayan views, pure vegetarian home-cooked food, and 30+ years of hospitality. From Rs 2,499/night.
               </p>
               <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
                 <Link

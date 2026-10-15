@@ -7,27 +7,37 @@ import { BLOG_POSTS } from "@/data/blogData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FloatingActions } from "@/components/FloatingActions";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { StructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Shimla Travel Blog 2025 – Best Stays, Hotels & Homestay Guides | Dev Homestay",
+  title: "Shimla Travel Blog 2026 – Best Stays, Sightseeing & Local Guides | Dev Homestay",
   description:
-    "Expert Shimla travel guides: best homestays, hotels, snowfall tips, family stays, sightseeing itineraries and more. Written by the hosts of Dev Homestay, Dudhli-Bharari, Shimla.",
-  keywords: [
-    "Shimla travel blog",
-    "best homestay Shimla",
-    "hotels in Shimla",
-    "Shimla sightseeing guide",
-    "Shimla snowfall 2025",
-    "family stays Shimla",
-    "Dev Homestay blog",
-  ],
+    "Expert Shimla travel guides for 2026: best homestays, snowfall tips, family stays with kitchen, Mall Road travel, and Spiti-Kinnaur tours by Dev Homestay, Shimla.",
+  alternates: {
+    canonical: "https://www.devhomestay.in/blog",
+  },
   openGraph: {
-    title: "Shimla Travel Blog – Expert Guides & Local Insights | Dev Homestay",
+    title: "Shimla Travel Blog 2026 – Expert Guides & Local Insights | Dev Homestay",
     description:
-      "Discover the best stays, sightseeing spots, seasonal tips and honest travel guides for Shimla from your local hosts at Dev Homestay.",
-    url: "https://devhomestay.com/blog",
+      "Discover the best stays, sightseeing spots, seasonal tips, and honest travel guides for Shimla from your local hosts at Dev Homestay.",
+    url: "https://www.devhomestay.in/blog",
     siteName: "Dev Homestay",
+    images: [
+      {
+        url: "https://www.devhomestay.in/images/views/misty-valley-clouds-view.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dev Homestay Shimla misty valley views and deodar forest",
+      },
+    ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shimla Travel Blog 2026 – Expert Guides | Dev Homestay",
+    description: "Honest Shimla travel guides, snowfall tips, and local itineraries.",
+    images: ["https://www.devhomestay.in/images/views/misty-valley-clouds-view.jpg"],
   },
 };
 
@@ -37,6 +47,20 @@ export default function BlogListPage() {
 
   return (
     <>
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Shimla Travel Blog 2026 – Dev Homestay",
+          description: "Expert Shimla travel guides, homestay vs hotel guides, seasonal tips and itineraries.",
+          url: "https://www.devhomestay.in/blog",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Dev Homestay",
+            url: "https://www.devhomestay.in",
+          },
+        }}
+      />
       <Navbar />
 
       <main style={{ paddingTop: "80px" }}>
@@ -61,6 +85,13 @@ export default function BlogListPage() {
             }}
           />
           <div className="container" style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
+            <div style={{ marginBottom: "16px", display: "flex", justifyContent: "center" }}>
+              <Breadcrumbs
+                items={[
+                  { label: "Blog", href: "/blog" },
+                ]}
+              />
+            </div>
             <div className="section-tag" style={{ display: "inline-flex", marginBottom: "20px" }}>
               <BookOpen size={14} />
               Shimla Travel Blog
