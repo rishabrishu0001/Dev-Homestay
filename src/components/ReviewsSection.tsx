@@ -1,9 +1,7 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import { Star, MessageSquareQuote, Sparkles, Award } from "lucide-react";
-import { REVIEWS } from "@/data/homestayData";
+import { REVIEWS, REVIEW_METRICS } from "@/data/homestayData";
 import styles from "./ReviewsSection.module.css";
 
 export const ReviewsSection: React.FC = () => {
@@ -44,14 +42,8 @@ export const ReviewsSection: React.FC = () => {
 
               {/* Author */}
               <div className={styles.authorRow}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={rev.avatar}
-                    alt={rev.author}
-                    fill
-                    sizes="50px"
-                    style={{ objectFit: "cover" }}
-                  />
+                <div className={styles.initialsAvatar} aria-hidden="true">
+                  {rev.initials}
                 </div>
                 <div className={styles.authorInfo}>
                   <h4>{rev.author}</h4>
@@ -67,21 +59,21 @@ export const ReviewsSection: React.FC = () => {
         {/* Trust Badges Bar */}
         <div className={`${styles.trustBanner} reveal-slide-up`}>
           <div className={styles.trustItem}>
-            <h4>4.8 ★</h4>
-            <p>TripAdvisor (118 Reviews)</p>
+            <h4>{REVIEW_METRICS.tripAdvisorRating} ★</h4>
+            <p>TripAdvisor ({REVIEW_METRICS.tripAdvisorReviews} Reviews)</p>
           </div>
           <div className={styles.trustItem}>
-            <h4>4.5 ★</h4>
-            <p>Google (450 Reviews)</p>
+            <h4>{REVIEW_METRICS.googleRating} ★</h4>
+            <p>Google ({REVIEW_METRICS.googleReviews} Reviews)</p>
           </div>
           <div className={styles.trustItem}>
-            <h4>30+ Yrs</h4>
+            <h4>{REVIEW_METRICS.hospitalityYears} Yrs</h4>
             <p>5-Star Hospitality Exp</p>
           </div>
           <div className={styles.trustItem}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
               <Award size={24} color="#c9713e" />
-              <span style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--primary)" }}>Travellers&apos; Choice</span>
+              <span style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--primary)" }}>{REVIEW_METRICS.tripAdvisorBadge}</span>
             </div>
             <p>TripAdvisor Recognition</p>
           </div>

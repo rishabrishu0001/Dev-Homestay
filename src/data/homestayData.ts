@@ -1,5 +1,6 @@
 export interface Room {
   id: string;
+  slug: string;
   name: string;
   tagline: string;
   category: "deluxe" | "attic" | "cottage" | "riverside";
@@ -13,7 +14,14 @@ export interface Room {
   gallery: string[];
   features: string[];
   description: string;
+  longDescription: string;
+  primaryKeyword: string;
+  secondaryKeywords: string[];
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
   badge?: string;
+  faqs: { q: string; a: string }[];
 }
 
 export interface Amenity {
@@ -27,12 +35,12 @@ export interface Amenity {
 export interface Review {
   id: string;
   author: string;
+  initials: string;
   location: string;
   stayDate: string;
   rating: number;
   roomType: string;
   comment: string;
-  avatar: string;
 }
 
 export interface GalleryItem {
@@ -51,8 +59,29 @@ export interface ExperienceItem {
   desc: string;
 }
 
+export const REVIEW_METRICS = {
+  googleRating: 4.5,
+  googleReviews: 450, // Flagged for owner confirmation (Hero previously said 560+)
+  tripAdvisorRating: 4.8,
+  tripAdvisorReviews: 118,
+  tripAdvisorBadge: "Travellers' Choice",
+  hospitalityYears: "30+",
+  establishedYear: 2015,
+};
+
+export const OWNER_INPUT_PLACEHOLDERS = {
+  hpRegistrationNumber: "HP-HOMESTAY-REG-PENDING", // Needs owner input
+  hostFullName: "Dev & Family", // Needs owner input: legal full name of host
+  confirmedGoogleReviews: 450, // Needs owner input: confirm whether 450 or 560+
+  socialProfiles: {
+    instagram: "https://www.instagram.com/devhomestay.shimla/", // Placeholder: pending owner verification
+    facebook: "https://www.facebook.com/devhomestayshimla/", // Placeholder: pending owner verification
+  },
+};
+
 export const HOMESTAY_INFO = {
   name: "Dev Homestay, Shimla",
+  canonicalUrl: "https://www.devhomestay.in",
   tagline: "A Home in the Hills. A Taste of Himachal. A Story to Take Home.",
   subheading: "Established in 2015 | 30+ Years of Hospitality Experience | Authentic Homestyle Hospitality",
   description: "Welcome to Dev Homestay, a family-run homestay in Shimla where the beauty of the Himalayas meets the warmth of a traditional Indian home. Located in the tranquil Dudhli–Bharari area (~4 km from Mall Road), surrounded by deodar forests, fresh mountain air, and 100% pure vegetarian home-cooked food.",
@@ -62,24 +91,27 @@ export const HOMESTAY_INFO = {
   email: "devhomestay2@gmail.com",
   address: "Bharari Bhont Road, Ragyan, Dudhli, Shimla, Himachal Pradesh - 171003",
   locationCoords: "31.1215° N, 77.1820° E",
-  tripAdvisorRating: 4.8,
-  tripAdvisorReviews: 118,
-  googleRating: 4.5,
-  googleReviews: 450,
-  rating: 4.8,
-  reviewCount: 568,
-  establishedYear: 2015,
-  hospitalityYears: "30+",
+  latitude: 31.1215,
+  longitude: 77.1820,
+  tripAdvisorRating: REVIEW_METRICS.tripAdvisorRating,
+  tripAdvisorReviews: REVIEW_METRICS.tripAdvisorReviews,
+  googleRating: REVIEW_METRICS.googleRating,
+  googleReviews: REVIEW_METRICS.googleReviews,
+  rating: REVIEW_METRICS.tripAdvisorRating,
+  reviewCount: REVIEW_METRICS.googleReviews,
+  establishedYear: REVIEW_METRICS.establishedYear,
+  hospitalityYears: REVIEW_METRICS.hospitalityYears,
   hostName: "Dev & Family",
   checkInTime: "12:00 PM",
   checkOutTime: "11:00 AM",
-  distanceToMallRoad: "Approx. 4 km (12 mins)",
+  distanceToMallRoad: "4 km (approx. 12 mins)",
   foodType: "100% Pure Vegetarian & Homemade",
 };
 
 export const ROOMS: Room[] = [
   {
     id: "cedar-view-deluxe",
+    slug: "cedar-view-deluxe-room",
     name: "Cedar View Deluxe Room",
     tagline: "Unobstructed Himalayan valley views with deodar forest balcony",
     category: "deluxe",
@@ -90,6 +122,11 @@ export const ROOMS: Room[] = [
     view: "Panoramic Pine Valley & Himalayan Ridges",
     size: "200 sq.ft",
     badge: "Most Popular",
+    primaryKeyword: "valley view room in Shimla",
+    secondaryKeywords: ["Shimla homestay with balcony", "couple friendly homestay Shimla", "affordable valley view stay Shimla"],
+    metaTitle: "Valley View Room in Shimla with Private Balcony | Dev Homestay",
+    metaDescription: "Book a peaceful 200 sq ft valley view room in Shimla with king bed, thermal bedding, electric heater, and deodar forest balcony. Direct booking from Rs 2,499/night.",
+    h1: "Cedar View Deluxe Room – Valley View Room in Shimla",
     image: "/images/rooms/hotel-panoramic-veranda-view.jpg",
     gallery: [
       "/images/rooms/hotel-panoramic-veranda-view.jpg",
@@ -101,51 +138,38 @@ export const ROOMS: Room[] = [
       "/images/views/panoramic-snow-mountain-view.jpg"
     ],
     features: [
-      "Valley View Balcony",
-      "Comfortable 8-Inch Mattress",
+      "Valley View Balcony with Sitout Chairs",
+      "Comfortable 8-Inch King Bed Mattress",
       "Electric Room Heater & Thermal Bedding",
       "Ensuite Bath with 24/7 Geyser Hot Water",
-      "High-Speed Fiber Wi-Fi",
-      "Herbal Tea & Coffee Maker",
-      "Daily Housekeeping & Fresh Linens"
+      "High-Speed Fiber Wi-Fi for Seamless Work",
+      "Electric Kettle for Morning Tea & Coffee",
+      "Daily Housekeeping & Pure Vegetarian Dining"
     ],
-    description: "Perched on the upper floor, our 200 sq.ft Cedar View Deluxe Room boasts comfortable bedding with an 8-inch mattress, expansive glass windows, and an attached balcony framing uninterrupted vistas of mist-clad Himalayan pine forests."
-  },
-  {
-    id: "cozy-family-suite",
-    name: "Cozy Family Suite",
-    tagline: "Spacious 2-room family sanctuary with private kitchen, gas stove, and mountain views",
-    category: "attic",
-    pricePerNight: 4199,
-    originalPrice: 5299,
-    capacity: "4 - 6 Guests",
-    bedType: "2 Rooms with 2 Queen Beds",
-    view: "Deodar Canopies & Mountain Ridges",
-    size: "420 sq.ft",
-    badge: "Family Favorite",
-    image: "/images/rooms/bedroom-wooden-floor-balcony-view.jpg",
-    gallery: [
-      "/images/rooms/bedroom-wooden-floor-balcony-view.jpg",
-      "/images/rooms/bedroom-wood-floor-purple-quilt.jpg",
-      "/images/rooms/bedroom-sunlit-window-plaid-bed.jpg",
-      "/images/rooms/bedroom-sunlit-forest-window.jpg",
-      "/images/views/morning-sunbeams-pine-mist.jpg",
-      "/images/views/homestay-snow-covered-winter.jpg",
-      "/images/views/balcony-snowman-bear.jpg"
-    ],
-    features: [
-      "2 Separate Rooms with 2 Queen Beds",
-      "Private Kitchen with Gas Stove & Utensils",
-      "Accommodates 4 to 6 Guests",
-      "Attached Balcony Facing Pine Woods",
-      "Warm Natural Hardwood Flooring",
-      "Electric Heating Blanket & Room Heater",
-      "High-Speed Wi-Fi & 24/7 Hot Water"
-    ],
-    description: "A spacious 2-room family suite ideal for 4 to 6 guests, featuring 2 queen beds and a private kitchen equipped with gas stove for home cooking. Large sunlit windows and attached balcony overlook pristine Shimla deodar woods."
+    description: "Perched on the upper floor, our 200 sq.ft Cedar View Deluxe Room boasts comfortable bedding with an 8-inch mattress, expansive glass windows, and an attached balcony framing uninterrupted vistas of mist-clad Himalayan pine forests.",
+    longDescription: "The Cedar View Deluxe Room is our flagship accommodation designed for couples, solo nature lovers, and travelers who prioritize peaceful valley panoramas. Positioned facing the serene pine ridges of Dudhli-Bharari, this 200 sq ft room opens out onto a private balcony where morning mist gives way to golden Himalayan sunrises. The room is equipped with a plush king bed fitted with an 8-inch orthopaedic mattress and heavy winter thermal bedding. In winter, an electric room heater keeps the living space warm, while the attached tiled bathroom provides round-the-clock steaming geyser hot water. Step onto the balcony to enjoy fresh Himalayan deodar aromas, sip hot home-brewed ginger tea, and listen to mountain birds, all just 4 km away from Mall Road.",
+    faqs: [
+      {
+        q: "What is the nightly rate and maximum occupancy for the Cedar View Deluxe Room?",
+        a: "The Cedar View Deluxe Room starts from Rs 2,499 per night for direct bookings (including 10% direct booking discount with zero booking fees). It accommodates up to 2 adult guests comfortably with 1 king bed."
+      },
+      {
+        q: "Does this room have heating and hot water during winter?",
+        a: "Yes. Every room is furnished with an electric room heater and warm thermal bedding. The ensuite bathroom features a 24/7 geyser for steaming hot water throughout the year."
+      },
+      {
+        q: "Is there a private balcony with valley views?",
+        a: "Yes. The Cedar View Deluxe Room has a dedicated sitout balcony overlooking lush green deodar canopies and rolling pine hills across the Dudhli valley."
+      },
+      {
+        q: "Is Wi-Fi strong enough for remote work in this room?",
+        a: "Yes. We offer complimentary high-speed fiber broadband Wi-Fi coverage across all rooms, balconies, and common seating areas."
+      }
+    ]
   },
   {
     id: "valley-view-room",
+    slug: "valley-view-room",
     name: "Valley View Room",
     tagline: "Panoramic Himalayan valley views with balcony & fresh mountain breeze",
     category: "cottage",
@@ -156,6 +180,11 @@ export const ROOMS: Room[] = [
     view: "Expansive Pine Valley & Mountain Ridges",
     size: "220 sq.ft",
     badge: "Valley View",
+    primaryKeyword: "Shimla homestay with balcony",
+    secondaryKeywords: ["balcony room Shimla valley view", "quiet stay Shimla balcony", "scenic homestay Shimla"],
+    metaTitle: "Shimla Homestay with Balcony & Mountain Views | Dev Homestay",
+    metaDescription: "Spacious 220 sq ft balcony room in Shimla overlooking pine valleys. Features 1 queen bed, 1 sofa-cum-bed, 24/7 hot water, and pure veg home food from Rs 2,799.",
+    h1: "Valley View Room – Shimla Homestay with Balcony",
     image: "/images/rooms/bedroom-suite-tv-dressing.jpg",
     gallery: [
       "/images/rooms/bedroom-suite-tv-dressing.jpg",
@@ -168,16 +197,84 @@ export const ROOMS: Room[] = [
       "/images/views/snowy-pine-forest-trail.jpg"
     ],
     features: [
-      "Panoramic Valley View Balcony",
-      "1 Queen Bed + 1 Sofa-cum-Bed",
-      "220 sq.ft Cozy Mountain Living",
+      "Panoramic Valley View Balcony with Open Skies",
+      "1 Queen Bed plus 1 Sofa-cum-Bed for flexible stays",
+      "220 sq.ft Airy Living with Dressing Area",
       "Attached Clean Bathroom with 24/7 Hot Water",
-      "High-Speed Fiber Wi-Fi",
-      "Tea/Coffee Amenities & Electric Kettle",
-      "Electric Room Heater & Thermal Bedding",
-      "Dedicated Dressing Area & Wardrobe"
+      "High-Speed Fiber Wi-Fi & Electric Kettle",
+      "Electric Room Heater & Layered Mountain Quilts",
+      "Dedicated Full-Length Wardrobe & Mirror"
     ],
-    description: "A cozy 220 sq.ft mountain room with 1 queen bed and 1 sofa-cum-bed, opening up to sweeping views of the lush Dudhli-Bharari pine valley and morning mist. Features an attached sitout balcony to soak in fresh mountain air, quiet cedar acoustics, and stunning sunsets."
+    description: "A cozy 220 sq.ft mountain room with 1 queen bed and 1 sofa-cum-bed, opening up to sweeping views of the lush Dudhli-Bharari pine valley and morning mist. Features an attached sitout balcony to soak in fresh mountain air, quiet cedar acoustics, and stunning sunsets.",
+    longDescription: "The Valley View Room offers 220 sq ft of warm mountain living designed for couples, small families with a child, or friends traveling together. Configured with one comfortable queen bed alongside an additional convertible sofa-cum-bed, this room comfortably welcomes 2 to 3 guests. The standout highlight is its unobstructed private balcony that frames deep pine valleys and distant snow ridges. Natural wood finishes, floral Himachali tapestries, and a private dressing alcove create an inviting sanctuary. Guests enjoy pure vegetarian meals prepared fresh in the host family kitchen and delivered warm to the room or veranda.",
+    faqs: [
+      {
+        q: "Can the Valley View Room accommodate 3 guests?",
+        a: "Yes. The room includes 1 queen bed plus 1 sturdy sofa-cum-bed, providing comfortable sleeping arrangements for up to 3 guests."
+      },
+      {
+        q: "What makes this room popular for balcony lovers?",
+        a: "The room has direct glass-door access to an attached mountain balcony facing west, making it an incredible vantage point for evening sunsets over the pine forest."
+      },
+      {
+        q: "What amenities are included in the room price?",
+        a: "All bookings include fiber Wi-Fi, 24/7 hot geyser water, electric heater, electric tea kettle, fresh towels and linens, and secure on-site parking."
+      }
+    ]
+  },
+  {
+    id: "cozy-family-suite",
+    slug: "family-suite",
+    name: "Cozy Family Suite",
+    tagline: "Spacious 2-room family sanctuary with private kitchen, gas stove, and mountain views",
+    category: "attic",
+    pricePerNight: 4199,
+    originalPrice: 5299,
+    capacity: "4 - 6 Guests",
+    bedType: "2 Separate Rooms with 2 Queen Beds",
+    view: "Deodar Canopies & Mountain Ridges",
+    size: "420 sq.ft",
+    badge: "Family Favorite",
+    primaryKeyword: "family homestay in Shimla with kitchen",
+    secondaryKeywords: ["homestay with kitchen Shimla", "family stay Shimla 6 guests", "2 room suite Shimla homestay"],
+    metaTitle: "Family Homestay in Shimla with Kitchen (4–6 Guests) | Dev Homestay",
+    metaDescription: "Spacious 420 sq ft 2-room suite in Shimla with private kitchen, gas stove, utensils, 2 queen beds & balcony. Sleeps 4–6 guests. Book direct from Rs 4,199.",
+    h1: "Cozy Family Suite – Family Homestay in Shimla with Kitchen",
+    image: "/images/rooms/bedroom-wooden-floor-balcony-view.jpg",
+    gallery: [
+      "/images/rooms/bedroom-wooden-floor-balcony-view.jpg",
+      "/images/rooms/bedroom-wood-floor-purple-quilt.jpg",
+      "/images/rooms/bedroom-sunlit-window-plaid-bed.jpg",
+      "/images/rooms/bedroom-sunlit-forest-window.jpg",
+      "/images/views/morning-sunbeams-pine-mist.jpg",
+      "/images/views/homestay-snow-covered-winter.jpg",
+      "/images/views/balcony-snowman-bear.jpg"
+    ],
+    features: [
+      "2 Independent Interconnected Bedrooms",
+      "Private Kitchen with Gas Stove, Utensils & Sink",
+      "Comfortably Accommodates 4 to 6 Guests",
+      "Attached Balcony Facing Pristine Cedar Woods",
+      "Rich Hardwood Timber Flooring & Ambient Lighting",
+      "Electric Heating Blankets & Room Heaters",
+      "High-Speed Fiber Wi-Fi & 24/7 Hot Water Geyser"
+    ],
+    description: "A spacious 2-room family suite ideal for 4 to 6 guests, featuring 2 queen beds and a private kitchen equipped with gas stove for home cooking. Large sunlit windows and attached balcony overlook pristine Shimla deodar woods.",
+    longDescription: "Spanning 420 sq ft, the Cozy Family Suite is designed specifically for families with children, elderly parents, or extended travel groups wanting complete privacy and self-sufficiency. The suite consists of two separate, interconnected bedrooms equipped with two queen beds and extra bedding available for up to 6 guests. A private in-suite kitchen features an operational gas stove, cookware, and essential dining utensils, allowing parents to prepare baby food, light snacks, or herbal tea at any hour. Natural pine timber flooring and panoramic windows looking into Himalayan cedar woods make this suite feel like an authentic hill cottage.",
+    faqs: [
+      {
+        q: "What is included in the private kitchen?",
+        a: "The private kitchen includes an operational LPG gas stove, basic cooking pans, tea utensils, plates, glasses, and a washing sink. It is ideal for preparing children's meals, tea, coffee, or quick home-style vegetarian snacks."
+      },
+      {
+        q: "How many guests can stay in the Cozy Family Suite?",
+        a: "The suite has 2 separate bedrooms with 2 queen beds and easily accommodates 4 to 6 guests, making it ideal for family holidays."
+      },
+      {
+        q: "Can we still order home-cooked food from the host kitchen?",
+        a: "Absolutely! Guests can order 100% pure vegetarian, freshly cooked Himachali meals, breakfast paranthas, and thalis from our family kitchen alongside having their own private kitchenette."
+      }
+    ]
   }
 ];
 
@@ -576,32 +673,32 @@ export const REVIEWS: Review[] = [
   {
     id: "r1",
     author: "Aditya & Shreya Sharma",
+    initials: "AS",
     location: "Mumbai",
     stayDate: "Stayed March 2026",
     rating: 5,
     roomType: "Cedar View Deluxe Room",
-    comment: "Dev Homestay was the best travel decision for our Shimla trip! Located in peaceful Dudhli-Bharari away from the Mall Road chaos. The host's 30+ years of 5-star hotel experience truly shows in every detail. Pure vegetarian home-cooked food was divine!",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+    comment: "Dev Homestay was the best travel decision for our Shimla trip! Located in peaceful Dudhli-Bharari away from the Mall Road chaos. The host's 30+ years of 5-star hotel experience truly shows in every detail. Pure vegetarian home-cooked food was divine!"
   },
   {
     id: "r2",
     author: "Karan Malhotra",
+    initials: "KM",
     location: "Bengaluru",
     stayDate: "Stayed February 2026",
     rating: 5,
     roomType: "Cozy Family Suite",
-    comment: "A tranquil mountain sanctuary nestled among deodar forests. We stayed in the Cozy Family Suite with our family. The dedicated travel desk arranged our full Kufri and local sightseeing seamlessly. Truly felt like a home away from home. Come as a guest, leave as family!",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+    comment: "A tranquil mountain sanctuary nestled among deodar forests. We stayed in the Cozy Family Suite with our family. The dedicated travel desk arranged our full Kufri and local sightseeing seamlessly. Truly felt like a home away from home. Come as a guest, leave as family!"
   },
   {
     id: "r3",
     author: "Ananya Iyer & Family",
+    initials: "AI",
     location: "Delhi NCR",
     stayDate: "Stayed January 2026",
     rating: 5,
     roomType: "Valley View Room",
-    comment: "Finding authentic 100% pure vegetarian, homely food in Shimla can be difficult, but Dev Homestay's kitchen was exceptional! The valley views from the balcony, fresh pine air, and warm conversations with the hosts made our holiday unforgettable. Highly recommended!",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+    comment: "Finding authentic 100% pure vegetarian, homely food in Shimla can be difficult, but Dev Homestay's kitchen was exceptional! The valley views from the balcony, fresh pine air, and warm conversations with the hosts made our holiday unforgettable. Highly recommended!"
   }
 ];
 

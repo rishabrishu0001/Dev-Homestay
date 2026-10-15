@@ -1,0 +1,16 @@
+{
+  "name": "Dev Homestay, Shimla",
+  "short_name": "Dev Homestay",
+  "description": "Family-run homestay in Dudhli, Shimla, 4 km from Mall Road. Pure veg home food & valley-view rooms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1e15",
+  "theme_color": "#1a4231",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
