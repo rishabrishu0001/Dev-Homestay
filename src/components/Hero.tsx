@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Star, Calendar, Users, Home, Search, Flame, Wifi, Sparkles, MapPin } from "lucide-react";
-import { HOMESTAY_INFO, ROOMS } from "@/data/homestayData";
+import Image from "next/image";
+import { Star, Calendar, Users, Home, Search, Flame, Wifi, Sparkles, MapPin, Clock, ShieldCheck } from "lucide-react";
+import { HOMESTAY_INFO, ROOMS, REVIEW_METRICS } from "@/data/homestayData";
+import { trackEvent } from "@/lib/analytics";
 import styles from "./Hero.module.css";
 
 interface HeroProps {
@@ -26,12 +28,24 @@ export const Hero: React.FC<HeroProps> = ({ onSearch }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackEvent("book_stay_click", { source: "hero_search", roomType, guests });
     onSearch({ checkIn, checkOut, guests, roomType });
   };
 
   return (
     <section className={styles.heroSection}>
-      <div className={styles.heroBg} />
+      <div className={styles.heroBg}>
+        <Image
+          src="/images/views/panoramic-snow-mountain-view.jpg"
+          alt="Dev Homestay Shimla panoramic snow mountain and pine valley view"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center 30%" }}
+        />
+        <div className={styles.heroBgOverlay} />
+      </div>
 
       <div className={styles.heroContent}>
         {/* Rating Trust Badge */}
@@ -41,19 +55,28 @@ export const Hero: React.FC<HeroProps> = ({ onSearch }) => {
               <Star key={i} size={14} fill="#f7b731" stroke="#f7b731" />
             ))}
           </div>
-          <span>TripAdvisor <strong>4.8/5</strong> (Travellers&apos; Choice) • Google <strong>4.5/5</strong> (560+ Reviews)</span>
+          <span>TripAdvisor <strong>{REVIEW_METRICS.tripAdvisorRating}/5</strong> ({REVIEW_METRICS.tripAdvisorBadge}) • Google <strong>{REVIEW_METRICS.googleRating}/5</strong> ({REVIEW_METRICS.googleReviews} Reviews)</span>
         </div>
 
         {/* Hero Title */}
         <h1 className={styles.heroTitle}>
-          A Home in the Hills. <br />
-          <span className={styles.heroTitleHighlight}>A Taste of Himachal.</span>
+          Family-Run Homestay in Shimla, Dudhli–Bharari, 4 km from Mall Road
         </h1>
+
+        {/* Tagline */}
+        <p className={styles.heroTagline}>
+          A Home in the Hills. <span className={styles.heroTitleHighlight}>A Taste of Himachal.</span>
+        </p>
 
         {/* Subtitle */}
         <p className={styles.heroSubtitle}>
-          Welcome to Dev Homestay, Shimla. Located in peaceful Dudhli–Bharari (~4 km from Mall Road). 30+ years of 5-star hospitality experience, authentic pure vegetarian home-cooked food, and panoramic pine valley views.
+          Welcome to Dev Homestay, Shimla. Situated in serene Dudhli–Bharari surrounded by deodar pine woods. Hosted by hospitality professionals with 30+ years of 5-star experience, serving 100% pure vegetarian home-cooked meals with panoramic valley views.
         </p>
+
+        {/* At A Glance Block (Quotation-ready plain sentences for AI / Search Engines) */}
+        <div className={styles.atAGlance}>
+          <strong>At a glance:</strong> Dev Homestay is located on Bharari Bhont Road, Dudhli, Shimla (4 km / 12 mins from Mall Road). Valley-view rooms start from Rs 2,499 per night with 10% direct booking savings. Check-in is at 12:00 PM and check-out is at 11:00 AM. Amenities include 100% pure vegetarian home-cooked food, free high-speed fiber Wi-Fi, 24/7 hot water, free secure parking, and pet-friendly hospitality.
+        </div>
 
         {/* Search & Availability Bar */}
         <div className={styles.searchBarWrapper}>

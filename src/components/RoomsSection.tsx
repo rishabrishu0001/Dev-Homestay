@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Users, Bed, Mountain, Check, Eye, CalendarCheck, Sparkles } from "lucide-react";
 import { ROOMS, Room } from "@/data/homestayData";
+import { trackEvent } from "@/lib/analytics";
 import { RoomModal } from "./RoomModal";
 import styles from "./RoomsSection.module.css";
 
@@ -90,17 +92,20 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
 
                 {/* Actions */}
                 <div className={styles.cardActions}>
-                  <button
-                    onClick={() => setActiveModalRoom(room)}
+                  <Link
+                    href={`/rooms/${room.slug}`}
                     className="btn btn-outline"
-                    style={{ padding: "10px 14px", fontSize: "0.86rem" }}
+                    style={{ padding: "10px 14px", fontSize: "0.86rem", textDecoration: "none" }}
                   >
                     <Eye size={15} />
-                    <span>Details</span>
-                  </button>
+                    <span>View Room Details</span>
+                  </Link>
 
                   <button
-                    onClick={() => onSelectForBooking(room.id)}
+                    onClick={() => {
+                      trackEvent("room_reserve_click", { roomName: room.name, roomId: room.id });
+                      onSelectForBooking(room.id);
+                    }}
                     className="btn btn-primary"
                     style={{ padding: "10px 16px", fontSize: "0.86rem" }}
                   >

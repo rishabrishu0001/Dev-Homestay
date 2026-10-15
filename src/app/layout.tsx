@@ -1,40 +1,50 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: "#1a4231",
 };
 
 export const metadata: Metadata = {
-  title: "Dev Homestay, Shimla - A Home in the Hills | Authentic Homestyle Hospitality",
-  description: "Dev Homestay, Shimla established in 2015 with 30+ years hospitality experience. Located in peaceful Dudhli–Bharari (4 km to Mall Road) with pure vegetarian home-cooked food, deodar forest views, and tour services.",
-  keywords: [
-    "Dev Homestay Shimla",
-    "Homestay in Shimla",
-    "Dudhli Bharari Homestay",
-    "Pure Vegetarian Homestay Shimla",
-    "Shimla Homestay with Balcony",
-    "Shimla Tour Packages",
-    "Spiti Valley Tours from Shimla",
-    "Family Homestay Shimla"
-  ],
+  metadataBase: new URL("https://www.devhomestay.in"),
+  title: "Homestay in Shimla near Mall Road | Dev Homestay, Dudhli – Pure Veg Stay",
+  description:
+    "Family-run homestay in Dudhli, Shimla, 4 km from Mall Road. Valley-view rooms from Rs 2,499, pure veg home-cooked food, free parking. Book direct, save 10%.",
+  alternates: {
+    canonical: "/",
+  },
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
-    title: "Dev Homestay, Shimla - A Home in the Hills",
-    description: "Authentic family-run homestay in Shimla with 30+ years of 5-star hospitality experience and pure vegetarian home-cooked food.",
-    url: "https://devhomestay.in",
-    siteName: "Dev Homestay",
+    title: "Homestay in Shimla near Mall Road | Dev Homestay, Dudhli – Pure Veg Stay",
+    description:
+      "Family-run homestay in Dudhli, Shimla, 4 km from Mall Road. Valley-view rooms from Rs 2,499, pure veg home-cooked food, free parking. Book direct, save 10%.",
+    url: "https://www.devhomestay.in",
+    siteName: "Dev Homestay, Shimla",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
+        url: "https://www.devhomestay.in/images/views/panoramic-snow-mountain-view.jpg",
         width: 1200,
         height: 630,
-        alt: "Dev Homestay Himalayan View",
+        alt: "Dev Homestay Shimla panoramic mountain and pine valley view",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Homestay in Shimla near Mall Road | Dev Homestay, Dudhli – Pure Veg Stay",
+    description:
+      "Family-run homestay in Dudhli, Shimla, 4 km from Mall Road. Valley-view rooms from Rs 2,499, pure veg home-cooked food, free parking. Book direct, save 10%.",
+    images: ["https://www.devhomestay.in/images/views/panoramic-snow-mountain-view.jpg"],
   },
 };
 
@@ -43,8 +53,30 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
-    <html lang="en">
+    <html lang="en-IN">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        )}
+      </head>
       <body>{children}</body>
     </html>
   );

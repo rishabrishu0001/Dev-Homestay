@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Trees, Phone, Menu, X, CalendarCheck } from "lucide-react";
 import { HOMESTAY_INFO } from "@/data/homestayData";
+import { trackEvent } from "@/lib/analytics";
 import styles from "./Navbar.module.css";
 
 interface NavbarProps {
@@ -44,35 +45,37 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav>
+        <nav aria-label="Main Navigation">
           <ul className={styles.navLinks}>
             <li>
-              <a href="#about" className={styles.navLink}>About</a>
+              <Link href="/#about" className={styles.navLink}>About</Link>
             </li>
             <li>
-              <a href="#rooms" className={styles.navLink}>Rooms & Suites</a>
+              <Link href="/#rooms" className={styles.navLink}>Rooms</Link>
             </li>
             <li>
-              <a href="#amenities" className={styles.navLink}>Experiences</a>
+              <Link href="/pure-vegetarian-homestay-shimla" className={styles.navLink}>Pure Veg Food</Link>
             </li>
             <li>
-              <a href="#gallery" className={styles.navLink}>Gallery</a>
+              <Link href="/tours" className={styles.navLink}>Tours & Cabs</Link>
             </li>
             <li>
-              <a href="#reviews" className={styles.navLink}>Reviews</a>
+              <Link href="/contact" className={styles.navLink}>Contact & Location</Link>
             </li>
             <li>
-              <a href="#location" className={styles.navLink}>Location</a>
-            </li>
-            <li>
-              <Link href="/blog" className={styles.navLink}>Blog</Link>
+              <Link href="/blog" className={styles.navLink}>Travel Blog</Link>
             </li>
           </ul>
         </nav>
 
         {/* Action Buttons */}
         <div className={styles.navActions}>
-          <a href={`tel:${HOMESTAY_INFO.phone}`} className={styles.phoneCallBtn} title="Call Host">
+          <a
+            href={`tel:${HOMESTAY_INFO.phone}`}
+            onClick={() => trackEvent("phone_click", { source: "navbar" })}
+            className={styles.phoneCallBtn}
+            title="Call Host directly"
+          >
             <Phone size={15} />
             <span>{HOMESTAY_INFO.phone}</span>
           </a>
@@ -80,17 +83,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
           <button
             onClick={() => {
               closeMenu();
+              trackEvent("book_stay_click", { source: "navbar" });
               if (onBookNowClick) {
                 onBookNowClick();
               } else {
                 const bookSec = document.getElementById("booking");
-                if (bookSec) bookSec.scrollIntoView({ behavior: "smooth" });
+                if (bookSec) {
+                  bookSec.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.location.href = "/#booking";
+                }
               }
             }}
             className={`btn btn-primary ${styles.navBookBtn}`}
           >
             <CalendarCheck size={15} />
-            <span>Book Stay</span>
+            <span>Book Direct (10% Off)</span>
           </button>
 
           {/* Mobile Toggle Button */}
@@ -107,19 +115,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className={styles.mobileDrawer}>
-          <a href="#about" className={styles.mobileNavLink} onClick={closeMenu}>About Us</a>
-          <a href="#rooms" className={styles.mobileNavLink} onClick={closeMenu}>Rooms & Suites</a>
-          <a href="#amenities" className={styles.mobileNavLink} onClick={closeMenu}>Experiences & Amenities</a>
-          <a href="#gallery" className={styles.mobileNavLink} onClick={closeMenu}>Photo Gallery</a>
-          <a href="#reviews" className={styles.mobileNavLink} onClick={closeMenu}>Guest Reviews</a>
-          <a href="#location" className={styles.mobileNavLink} onClick={closeMenu}>Location &amp; How to Reach</a>
-          <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu}>Travel Blog &amp; Guides</Link>
+          <Link href="/#about" className={styles.mobileNavLink} onClick={closeMenu}>About Dev Homestay</Link>
+          <Link href="/#rooms" className={styles.mobileNavLink} onClick={closeMenu}>Rooms & Wooden Cottages</Link>
+          <Link href="/pure-vegetarian-homestay-shimla" className={styles.mobileNavLink} onClick={closeMenu}>100% Pure Veg Dining</Link>
+          <Link href="/tours" className={styles.mobileNavLink} onClick={closeMenu}>Shimla Sightseeing & Tours</Link>
+          <Link href="/homestay-near-mall-road-shimla" className={styles.mobileNavLink} onClick={closeMenu}>Mall Road & Location</Link>
+          <Link href="/workation-shimla" className={styles.mobileNavLink} onClick={closeMenu}>Workation in Shimla</Link>
+          <Link href="/pet-friendly-homestay-shimla" className={styles.mobileNavLink} onClick={closeMenu}>Pet-Friendly Stays</Link>
+          <Link href="/contact" className={styles.mobileNavLink} onClick={closeMenu}>Contact & Map Directions</Link>
+          <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu}>Travel Blog & Guides</Link>
           <a
             href={`tel:${HOMESTAY_INFO.phone}`}
+            onClick={() => trackEvent("phone_click", { source: "mobile_menu" })}
             className={styles.mobileNavLink}
-            style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--primary)" }}
+            style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--primary)", fontWeight: 700 }}
           >
-            <Phone size={16} /> Call: {HOMESTAY_INFO.phone}
+            <Phone size={16} /> Call Host: {HOMESTAY_INFO.phone}
           </a>
         </div>
       )}
