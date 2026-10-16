@@ -46,6 +46,9 @@ export const metadata: Metadata = {
       "Family-run homestay in Dudhli, Shimla, 4 km from Mall Road. Valley-view rooms from Rs 2,499, pure veg home-cooked food, free parking. Book direct, save 10%.",
     images: ["https://www.devhomestay.in/images/views/panoramic-snow-mountain-view.jpg"],
   },
+  verification: {
+    google: "oSH1mllx0VIIn9_UT7Liko7jvUo1JvkvKMMeUS65cEI",
+  },
 };
 
 export default function RootLayout({
