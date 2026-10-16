@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     images: ["https://www.devhomestay.in/images/views/panoramic-snow-mountain-view.jpg"],
   },
   verification: {
-    google: "oSH1mllx0VIIn9_UT7Liko7jvUo1JvkvKMMeUS65cEI",
+    google: "VlFksAh0LfGjUCXzKcMda_clANyTTBxnnQUh2wy6HfA",
   },
 };
 
